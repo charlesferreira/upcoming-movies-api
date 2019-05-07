@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Genre {
 
-    private Long id;
-
     private String name;
 
 }
