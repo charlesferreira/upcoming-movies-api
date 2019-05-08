@@ -8,7 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class UpcomingMoviesResponse {
+public class MoviesResponse {
 
     private List<Movie> results;
 
@@ -18,4 +18,7 @@ public class UpcomingMoviesResponse {
 
     private int totalPages;
 
+    public static MoviesResponse empty() {
+        return new MoviesResponse();
+    }
 }

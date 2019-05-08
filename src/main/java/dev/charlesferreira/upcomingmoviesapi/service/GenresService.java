@@ -1,7 +1,7 @@
 package dev.charlesferreira.upcomingmoviesapi.service;
 
 import dev.charlesferreira.upcomingmoviesapi.model.Genre;
-import dev.charlesferreira.upcomingmoviesapi.service.response.GenreListResponse;
+import dev.charlesferreira.upcomingmoviesapi.service.response.GenresResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class GenresService {
 
     @Cacheable("genres")
     public Map<Long, Genre> genres() {
-        return tmdbService.get(GenreListResponse.class, GET_LIST)
+        return tmdbService.get(GenresResponse.class, GET_LIST)
                 .getGenres()
                 .stream()
                 .collect(Collectors.toMap(Genre::getId, Function.identity()));

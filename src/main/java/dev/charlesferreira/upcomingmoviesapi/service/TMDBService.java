@@ -2,6 +2,8 @@ package dev.charlesferreira.upcomingmoviesapi.service;
 
 import dev.charlesferreira.upcomingmoviesapi.util.QueryString;
 import org.apache.commons.text.StringSubstitutor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
