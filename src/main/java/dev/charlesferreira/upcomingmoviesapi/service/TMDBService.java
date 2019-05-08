@@ -16,10 +16,10 @@ import java.util.Map;
 @Service
 public class TMDBService {
 
-    private static final String URL_TEMPLATE = "https://api.themoviedb.org/3${PATH}?api_key=${API_KEY}&${QUERY}";
+    private static final String URL_TEMPLATE = "https://api.themoviedb.org/3${PATH}?api_key=${TMDB_API_KEY}&${QUERY}";
     private static final String PATH = "PATH";
     private static final String QUERY = "QUERY";
-    private static final String API_KEY = "API_KEY";
+    private static final String TMDB_API_KEY = "TMDB_API_KEY";
 
     @Autowired
     private Environment environment;
@@ -44,7 +44,7 @@ public class TMDBService {
         Map<String, String> substitutes = new HashMap<>();
         substitutes.put(PATH, path);
         substitutes.put(QUERY, queryString.getQuery());
-        substitutes.put(API_KEY, environment.getProperty(API_KEY));
+        substitutes.put(TMDB_API_KEY, environment.getProperty(TMDB_API_KEY));
         return new StringSubstitutor(substitutes).replace(URL_TEMPLATE);
     }
 
