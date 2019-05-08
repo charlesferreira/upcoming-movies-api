@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class GenresService {
@@ -17,8 +19,11 @@ public class GenresService {
     TMDBService tmdbService;
 
     @Cacheable("genres")
-    public List<Genre> genres() {
-        return tmdbService.get(GenreListResponse.class, GET_LIST).getGenres();
+    public Map<Long, Genre> genres() {
+        return tmdbService.get(GenreListResponse.class, GET_LIST)
+                .getGenres()
+                .stream()
+                .collect(Collectors.toMap(Genre::getId, Function.identity()));
     }
 
 }
