@@ -1,7 +1,7 @@
 package dev.charlesferreira.upcomingmoviesapi.controller;
 
 import dev.charlesferreira.upcomingmoviesapi.model.Genre;
-import dev.charlesferreira.upcomingmoviesapi.model.GenreList;
+import dev.charlesferreira.upcomingmoviesapi.service.response.GenreListResponse;
 import dev.charlesferreira.upcomingmoviesapi.service.TMDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,13 +15,15 @@ import java.util.List;
 @RequestMapping("/genres")
 public class GenresController {
 
+    private static final String GET_LIST = "/genre/movie/list";
+
     @Autowired
-    private TMDBService tmdbService;
+    TMDBService tmdbService;
 
     @GetMapping
     @Cacheable("genres")
     public List<Genre> getList() {
-        return tmdbService.get(GenreList.class, "/genre/movie/list").getGenres();
+        return tmdbService.get(GenreListResponse.class, GET_LIST).getGenres();
     }
 
 }

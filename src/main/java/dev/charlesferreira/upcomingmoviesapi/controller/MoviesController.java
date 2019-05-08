@@ -1,31 +1,33 @@
 package dev.charlesferreira.upcomingmoviesapi.controller;
 
 import dev.charlesferreira.upcomingmoviesapi.model.Movie;
+import dev.charlesferreira.upcomingmoviesapi.service.TMDBService;
+import dev.charlesferreira.upcomingmoviesapi.service.response.UpcomingMoviesResponse;
+import dev.charlesferreira.upcomingmoviesapi.util.QueryString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/movies")
 public class MoviesController {
 
-    private static final String API_KEY = "API_KEY";
-    private static final String URI_TEMPLATE = "https://api.themoviedb.org/3/movie/%s?api_key=%s";
+    private static final String GET_UPCOMING= "/movie/upcoming";
 
     @Autowired
-    private RestTemplate restTemplate;
+    TMDBService tmdbService;
 
-    @Autowired
-    private Environment environment;
-
-    @GetMapping("/{id}")
-    public Movie get(@PathVariable String id) {
-        String url = String.format(URI_TEMPLATE, id, environment.getProperty(API_KEY));
-        return restTemplate.getForObject(url, Movie.class);
+    @GetMapping("/upcoming")
+    @Cacheable("upcoming-movies")
+    public List<Movie> getUpcoming(@RequestParam(value = "page", defaultValue = "1") int page) {
+        QueryString queryString = QueryString.fromParams(Map.of("page", page));
+        return tmdbService.get(UpcomingMoviesResponse.class, GET_UPCOMING, queryString).getResults();
     }
 
 }

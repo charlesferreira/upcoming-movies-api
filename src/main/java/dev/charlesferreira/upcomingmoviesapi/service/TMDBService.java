@@ -1,5 +1,6 @@
 package dev.charlesferreira.upcomingmoviesapi.service;
 
+import dev.charlesferreira.upcomingmoviesapi.util.QueryString;
 import org.apache.commons.text.StringSubstitutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -15,8 +16,9 @@ import java.util.Map;
 @Service
 public class TMDBService {
 
-    private static final String URL_TEMPLATE = "https://api.themoviedb.org/3${PATH}?api_key=${API_KEY}";
+    private static final String URL_TEMPLATE = "https://api.themoviedb.org/3${PATH}?api_key=${API_KEY}&${QUERY}";
     private static final String PATH = "PATH";
+    private static final String QUERY = "QUERY";
     private static final String API_KEY = "API_KEY";
 
     @Autowired
@@ -25,18 +27,23 @@ public class TMDBService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public <T> T get(Class<T> clazz, String path) {
+    public <T> T get(Class<T> responseType, String path) {
+        return get(responseType, path, QueryString.newInstance());
+    }
+
+    public <T> T get(Class<T> responseType, String path, QueryString queryString) {
         ResponseEntity<T> response = restTemplate.exchange(
-                getUrlFor(path),
+                getUrlFor(path, queryString),
                 HttpMethod.GET,
                 null,
-                ParameterizedTypeReference.forType(clazz));
+                ParameterizedTypeReference.forType(responseType));
         return response.getBody();
     }
 
-    private String getUrlFor(String path) {
+    private String getUrlFor(String path, QueryString queryString) {
         Map<String, String> substitutes = new HashMap<>();
         substitutes.put(PATH, path);
+        substitutes.put(QUERY, queryString.getQuery());
         substitutes.put(API_KEY, environment.getProperty(API_KEY));
         return new StringSubstitutor(substitutes).replace(URL_TEMPLATE);
     }
