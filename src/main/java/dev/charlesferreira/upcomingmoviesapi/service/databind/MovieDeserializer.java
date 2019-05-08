@@ -12,6 +12,7 @@ import dev.charlesferreira.upcomingmoviesapi.model.Genre;
 import dev.charlesferreira.upcomingmoviesapi.model.Movie;
 import dev.charlesferreira.upcomingmoviesapi.service.GenresService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -20,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class MovieDeserializer extends StdDeserializer<Movie> {
 
     @Autowired

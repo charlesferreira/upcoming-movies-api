@@ -1,13 +1,13 @@
 package dev.charlesferreira.upcomingmoviesapi.service.response;
 
 import dev.charlesferreira.upcomingmoviesapi.model.Genre;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 public class GenreListResponse {
 
     private List<Genre> genres;
