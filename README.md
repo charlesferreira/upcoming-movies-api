@@ -12,7 +12,7 @@ API for the [Upcoming Movies](https://upcoming-movies-client.herokuapp.com) appl
 
 ## Assumptions
 
-* The TMDb service will be available* 
+* The TMDb service will be available
 
 
 ## Build instructions
