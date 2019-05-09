@@ -1,6 +1,8 @@
 # Upcoming Movies API
 
-API for the [Upcoming Movies](https://upcoming-movies-client.herokuapp.com) application.
+API for the Upcoming Movies application. You can try a [live demo](https://upcoming-movies-client.herokuapp.com/)*.
+
+\* *Please notice that the first request might take quite long to return, since Heroku puts the app to sleep from time to time.*
 
 
 ## Architecture
@@ -37,13 +39,6 @@ used for reducing POJO boilerplate in the model and response classes
 used for parsing endpoint URL template strings
 
 
-## Client Demo
-
-You can try the [client demo](https://upcoming-movies-client.herokuapp.com/) running on Heroku*.
-
-\* *Please notice that the first request might take quite long to return, since Heroku puts the app to sleep from time to time.*
-
-
 ## API Endpoints
 
 The API endpoints can be accessed through the following links:
@@ -51,5 +46,8 @@ The API endpoints can be accessed through the following links:
 http://upcoming-movies-api.herokuapp.com/v1/movies/upcoming?page=1 (Upcoming Movies)
 
 http://upcoming-movies-api.herokuapp.com/v1/movies/search?query=star+wars&page=1 (Search)
+
+
+
 
 [TMDb]: https://developers.themoviedb.org/3
