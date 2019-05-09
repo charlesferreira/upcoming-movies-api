@@ -5,14 +5,14 @@ API for the [Upcoming Movies](https://upcoming-movies-client.herokuapp.com) appl
 
 ## Architecture
 
-* Maven
-* Java 11
-* Spring Boot 2
+* [Maven](https://maven.apache.org/)
+* [Java 11](https://openjdk.java.net/projects/jdk/11/)
+* [Spring Boot 2](https://spring.io/projects/spring-boot)
 
 
 ## Assumptions
 
-* The TMDb service will be available
+* The [TMDb][TMDb] service will be available
 
 
 ## Build instructions
@@ -51,3 +51,5 @@ The API endpoints can be accessed through the following links:
 http://upcoming-movies-api.herokuapp.com/v1/movies/upcoming?page=1 (Upcoming Movies)
 
 http://upcoming-movies-api.herokuapp.com/v1/movies/search?query=star+wars&page=1 (Search)
+
+[TMDb]: https://developers.themoviedb.org/3
