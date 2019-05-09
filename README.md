@@ -39,7 +39,9 @@ used for parsing endpoint URL template strings
 
 ## Client Demo
 
-You can try a [client demo](https://upcoming-movies-client.herokuapp.com/) running on Heroku.
+You can try the [client demo](https://upcoming-movies-client.herokuapp.com/) running on Heroku*.
+
+\* *Please notice that the first request might take quite long to return, since Heroku puts the app to sleep from time to time.*
 
 
 ## API Endpoints
