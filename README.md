@@ -2,9 +2,11 @@
 
 API for the Upcoming Movies client
 
-## Demo
+## Client Demo
 
 You can check the [client demo](https://upcoming-movies-client.herokuapp.com/) here.
+
+## API Endpoints
 
 The API endpoints can be cheched in the following links:
 
